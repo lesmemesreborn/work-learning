@@ -1,0 +1,13 @@
+.nav {
+  grid-area: n;
+  background-color: burlywood;
+  margin: 0 5px 0 5px;
+}
+
+.item {
+  color: #FFFFFF;
+}
+
+.active {
+  color: gold
+}
