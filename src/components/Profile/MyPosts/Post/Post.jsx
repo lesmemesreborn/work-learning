@@ -1,13 +1,14 @@
 import React from 'react'
 
 //STYLES
-import classes from "./Post.module.css"
+import styles from "./Post.module.css"
 
-const Post = () => {
+const Post = (props) => {
     return ( 
-        <div className={classes.item}>
+        <div className={styles.item}>
           <img src='https://cdn-icons-png.flaticon.com/128/6997/6997508.png'/>
-          post 1
+          <div>{props.message}</div>
+          <div>{props.likes} likes</div>
           <div><span>like</span></div>
         </div>     
   )

@@ -1,19 +1,19 @@
-import React from 'react'
+import React from "react";
 
 //COMPONENTS
-import MyPosts from './MyPosts/MyPosts'
+import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 //STYLES
-import classes from "./Profile.module.css"
+import styles from "./Profile.module.css";
 
 const Profile = () => {
-    return ( 
-      <div className={classes.content}>
-      <img src="https://docs.microsoft.com/ru-ru/windows/apps/design/controls/images/image-licorice.jpg" />
-      <div>ava + desc</div>
+  return (
+    <div>
+      <ProfileInfo />
       <MyPosts />
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

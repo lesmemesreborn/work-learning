@@ -2,12 +2,14 @@
   grid-area: n;
   background-color: burlywood;
   margin: 0 5px 0 5px;
+  padding: 20px;
 }
 
-.item {
+.item a {
   color: #FFFFFF;
+  text-decoration: none;
 }
 
-.active {
-  color: gold
+.item a.active {
+  color: gold;
 }
