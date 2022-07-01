@@ -7,11 +7,16 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 //STYLES
 import styles from "./Profile.module.css";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts />
+      <MyPosts
+        postsData={props.profilePage.postsData}
+        addPost={props.addPost}
+        newPostText={props.profilePage.newPostText}
+        updateNewPostText={props.updateNewPostText}
+      />
     </div>
   );
 };

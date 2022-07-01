@@ -13,3 +13,13 @@
 .item a.active {
   color: gold;
 }
+
+.friendsTitle {
+  margin: 10px 0 10px 0;
+  font-weight: 700;
+}
+
+.friendsAvatar {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
