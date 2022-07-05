@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 //STATE
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
 //STYLES
 import "./index.css";
@@ -11,11 +11,15 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 let rerenderEntireTree = (state) => {
+  debugger;
   root.render(
-    <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
+    <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
   );
 };
 
 rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+});

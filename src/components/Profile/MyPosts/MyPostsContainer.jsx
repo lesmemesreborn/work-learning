@@ -2,6 +2,7 @@ import React from "react";
 
 //COMPONENTS
 import Post from "./Post/Post";
+import MyPosts from "./MyPosts";
 
 //STATE
 import {
@@ -12,7 +13,7 @@ import {
 //STYLES
 import styles from "./MyPosts.module.css";
 
-const MyPosts = (props) => {
+const MyPostsContainer = (props) => {
   let postsElements = props.postsData.map((p) => (
     <Post message={p.message} likes={p.likes} />
   ));
@@ -29,23 +30,7 @@ const MyPosts = (props) => {
     props.dispatch(action);
   };
 
-  return (
-    <div className={styles.postsBlock}>
-      <div>
-        My posts
-        <div>
-          <textarea
-            onChange={onPostChange}
-            ref={newPostElement}
-            value={props.newPostText}
-          />
-        </div>
-        <button onClick={addPost}>Add post</button>
-        <button>Remove</button>
-      </div>
-      <div className={styles.posts}>{postsElements}</div>
-    </div>
-  );
+  return <MyPosts />;
 };
 
-export default MyPosts;
+export default MyPostsContainer;

@@ -30,7 +30,7 @@ const App = (props) => {
             />
             <Route
               path="/dialogs/*"
-              element={<Dialogs profile={props.state.messagesPage} />}
+              element={<Dialogs store={props.store} />}
             />
             <Route path="/music" element={<Music />} />
             <Route path="/news" element={<News />} />
