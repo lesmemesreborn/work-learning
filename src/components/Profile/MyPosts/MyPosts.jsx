@@ -13,20 +13,20 @@ import {
 import styles from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
+  debugger;
   let postsElements = props.postsData.map((p) => (
     <Post message={p.message} likes={p.likes} />
   ));
 
   let newPostElement = React.createRef();
 
-  let addPost = () => {
-    props.dispatch(addPostCreator());
+  let onAddPost = () => {
+    props.addPost();
   };
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    let action = updateNewPostTextCreator(text);
-    props.dispatch(action);
+    props.updateNewPostText(text);
   };
 
   return (
@@ -40,7 +40,7 @@ const MyPosts = (props) => {
             value={props.newPostText}
           />
         </div>
-        <button onClick={addPost}>Add post</button>
+        <button onClick={onAddPost}>Add post</button>
         <button>Remove</button>
       </div>
       <div className={styles.posts}>{postsElements}</div>

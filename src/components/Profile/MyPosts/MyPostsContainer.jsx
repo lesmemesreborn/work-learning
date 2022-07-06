@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 //COMPONENTS
 import Post from "./Post/Post";
@@ -12,25 +13,27 @@ import {
 
 //STYLES
 import styles from "./MyPosts.module.css";
+import StoreContext from "../../../StoreContext";
 
-const MyPostsContainer = (props) => {
-  let postsElements = props.postsData.map((p) => (
-    <Post message={p.message} likes={p.likes} />
-  ));
-
-  let newPostElement = React.createRef();
-
-  let addPost = () => {
-    props.dispatch(addPostCreator());
+const mapStateToProps = (state) => {
+  return {
+    postsData: state.profilePage.postsData,
+    newPostText: state.profilePage.newPostText,
   };
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    let action = updateNewPostTextCreator(text);
-    props.dispatch(action);
-  };
-
-  return <MyPosts />;
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateNewPostText: (text) => {
+      let action = updateNewPostTextCreator(text);
+      dispatch(action);
+    },
+    addPost: () => {
+      dispatch(addPostCreator());
+    },
+  };
+};
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
