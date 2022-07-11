@@ -11,12 +11,13 @@ import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = (props) => {
   return (
     <Router>
       <div className="app-wrapper">
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
