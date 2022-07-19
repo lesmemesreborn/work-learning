@@ -1,35 +1,38 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import React from "react"
+import { NavLink } from "react-router-dom"
+import DialogItem from "./DialogItem/DialogItem"
+import Message from "./Message/Message"
+import { Navigate } from "react-router-dom"
 
 //STYLES
-import styles from "./Dialogs.module.css";
+import styles from "./Dialogs.module.css"
 import {
   sendMessageCreator,
   updateNewMessageBodyCreator,
-} from "../../redux/messagesReducer";
+} from "../../redux/messagesReducer"
 
 const Dialogs = (props) => {
-  let state = props.messagesPage;
+  let state = props.messagesPage
   let dialogsElements = state.dialogsData.map((d) => (
     <DialogItem name={d.name} key={d.id} id={d.id} />
-  ));
+  ))
 
   let messagesElements = state.messagesData.map((m) => (
     <Message message={m.message} key={m.id} />
-  ));
+  ))
 
-  let newMessageBody = state.newMessageBody;
+  let newMessageBody = state.newMessageBody
 
   let onSendMessageClick = () => {
-    props.sendMessage();
-  };
+    props.sendMessage()
+  }
 
   let onNewMessageChange = (e) => {
-    let body = e.target.value;
-    props.updateNewMessageBody(body);
-  };
+    let body = e.target.value
+    props.updateNewMessageBody(body)
+  }
+
+  if (!props.isAuth) return <Navigate to={"/login"} />
 
   return (
     <div className={styles.dialogs}>
@@ -48,7 +51,7 @@ const Dialogs = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dialogs;
+export default Dialogs
