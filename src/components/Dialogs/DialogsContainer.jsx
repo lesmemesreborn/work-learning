@@ -7,10 +7,7 @@ import { compose } from "redux"
 
 //STYLES
 import styles from "./Dialogs.module.css"
-import {
-  sendMessageCreator,
-  updateNewMessageBodyCreator,
-} from "../../redux/messagesReducer"
+import { sendMessageCreator } from "../../redux/messagesReducer"
 import { connect } from "react-redux"
 import { withAuthNavigate } from "../../hoc/withAuthNavigate"
 
@@ -22,11 +19,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessageBody: (body) => {
-      dispatch(updateNewMessageBodyCreator(body))
-    },
-    sendMessage: () => {
-      dispatch(sendMessageCreator())
+    sendMessage: (newMessageBody) => {
+      dispatch(sendMessageCreator(newMessageBody))
     },
   }
 }

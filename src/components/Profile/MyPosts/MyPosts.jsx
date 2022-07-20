@@ -1,50 +1,64 @@
-import React from "react";
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import {
+  maxLengthCreator,
+  required,
+} from "../../../utils/validators/validators"
+import { Textarea } from "../../common/FormsControls"
 
 //COMPONENTS
-import Post from "./Post/Post";
+import Post from "./Post/Post"
 
 //STATE
 import {
   addPostCreator,
   updateNewPostTextCreator,
-} from "../../../redux/profileReducer";
+} from "../../../redux/profileReducer"
 
 //STYLES
-import styles from "./MyPosts.module.css";
+import styles from "./MyPosts.module.css"
+
+const maxLength10 = maxLengthCreator(10)
+let AddNewPostForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field
+          name="newPostText"
+          component={Textarea}
+          placeholder={"Post Message"}
+          validate={[required, maxLength10]}
+        />
+      </div>
+      <div>
+        <button>Add post</button>
+      </div>
+    </form>
+  )
+}
+
+let AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(
+  AddNewPostForm
+)
 
 const MyPosts = (props) => {
   let postsElements = props.postsData.map((p) => (
     <Post message={p.message} likes={p.likes} />
-  ));
+  ))
 
-  let newPostElement = React.createRef();
+  let newPostElement = React.createRef()
 
-  let onAddPost = () => {
-    props.addPost();
-  };
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text);
-  };
+  let onAddPost = (values) => {
+    props.addPost(values.newPostText)
+  }
 
   return (
     <div className={styles.postsBlock}>
-      <div>
-        My posts
-        <div>
-          <textarea
-            onChange={onPostChange}
-            ref={newPostElement}
-            value={props.newPostText}
-          />
-        </div>
-        <button onClick={onAddPost}>Add post</button>
-        <button>Remove</button>
-      </div>
+      <h3>My posts</h3>
+      <AddNewPostFormRedux onSubmit={onAddPost} />
       <div className={styles.posts}>{postsElements}</div>
     </div>
-  );
-};
+  )
+}
 
-export default MyPosts;
+export default MyPosts
