@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import "./App.css"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { getAuthUserData } from "./redux/authReducer"
-import { connect } from "react-redux"
+import { connect, Provider } from "react-redux"
 import { compose } from "redux"
 import { initializeApp } from "./redux/appReducer"
+import store from "./redux/redux-store"
 
 //COMPONENTS
 
@@ -28,7 +29,7 @@ class App extends Component {
       return <Preloader />
     }
     return (
-      <Router>
+      <BrowserRouter>
         <div className="app-wrapper">
           <HeaderContainer />
           <Navbar />
@@ -47,7 +48,7 @@ class App extends Component {
             </Routes>
           </div>
         </div>
-      </Router>
+      </BrowserRouter>
     )
   }
 }

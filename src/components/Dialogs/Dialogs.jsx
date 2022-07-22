@@ -14,7 +14,6 @@ import {
 } from "../../redux/messagesReducer"
 
 const Dialogs = (props) => {
-  debugger
   let state = props.messagesPage
   let dialogsElements = state.dialogsData.map((d) => (
     <DialogItem name={d.name} key={d.id} id={d.id} />

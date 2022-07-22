@@ -41,10 +41,11 @@ let AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(
   AddNewPostForm
 )
 
-const MyPosts = (props) => {
-  let postsElements = props.postsData.map((p) => (
-    <Post message={p.message} likes={p.likes} />
-  ))
+const MyPosts = React.memo((props) => {
+  console.log("RENDER")
+  let postsElements = [...props.postsData]
+    .reverse()
+    .map((p) => <Post message={p.message} likes={p.likes} />)
 
   let newPostElement = React.createRef()
 
@@ -59,6 +60,6 @@ const MyPosts = (props) => {
       <div className={styles.posts}>{postsElements}</div>
     </div>
   )
-}
+})
 
 export default MyPosts

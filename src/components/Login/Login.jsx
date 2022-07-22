@@ -1,15 +1,15 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
-import { Input } from "../common/FormsControls"
+import { Input, createField } from "../common/FormsControls"
 import { required } from "../../utils/validators/validators"
 import { connect } from "react-redux"
 import { login } from "../../redux/authReducer"
 import { Navigate } from "react-router-dom"
 import styles from "./../common/FormsControls.module.css"
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           placeholder={"Email"}
@@ -31,9 +31,7 @@ const LoginForm = (props) => {
         <Field component={Input} name={"rememberMe"} type={"checkbox"} />{" "}
         remember me
       </div>
-      {props.error && (
-        <div className={styles.formSummaryError}>{props.error}</div>
-      )}
+      {error && <div className={styles.formSummaryError}>{error}</div>}
       <div>
         <button>Login</button>
       </div>
