@@ -20,7 +20,7 @@ const AddMessageForm = (props) => {
         />
       </div>
       <div>
-        <button>Send222</button>
+        <button>Send</button>
       </div>
     </form>
   )

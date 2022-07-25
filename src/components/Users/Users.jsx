@@ -15,7 +15,6 @@ const Users = ({
   let pages = []
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
-    if (i === 15) break
   }
 
   return (
@@ -23,7 +22,7 @@ const Users = ({
       <Paginator
         currentPage={currentPage}
         onPageChanged={onPageChanged}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalUsersCount}
         pageSize={pageSize}
       />
       <div>
